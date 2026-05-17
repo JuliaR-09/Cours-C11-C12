@@ -3,748 +3,516 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cours – Mouvement & Énergie – C11 & C12</title>
+<title>Fiche de révision – C13 Structures organiques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
-
-  :root {
-    --teal: #0F6E56;
-    --teal-mid: #1D9E75;
-    --teal-light: #E1F5EE;
-    --teal-xlight: #F0FBF6;
-    --amber: #9A5F0F;
-    --amber-light: #FDF3DC;
-    --blue: #185FA5;
-    --blue-light: #DCE9F9;
-    --purple: #534AB7;
-    --purple-light: #EEEDFE;
-    --red: #A32D2D;
-    --red-light: #FDEAEA;
-    --dark: #1a1a2e;
-    --gray-light: #F5F4F0;
-    --gray-mid: #D3D1C7;
-    --text: #2C2C2A;
-    --muted: #6B6A65;
-    --white: #ffffff;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: 13.5px;
-    color: var(--text);
-    background: #e8e5e0;
-    padding: 24px;
-    line-height: 1.7;
-  }
-
-  .page {
-    max-width: 920px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 6px 32px rgba(0,0,0,0.12);
-  }
-
-  /* ── Cover ── */
-  .cover {
-    background: var(--dark);
-    padding: 48px 48px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .cover::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 220px; height: 220px;
-    border-radius: 50%;
-    background: rgba(29,158,117,0.12);
-  }
-  .cover::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: -40px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(83,74,183,0.10);
-  }
-  .cover .tag {
-    display: inline-block;
-    background: rgba(29,158,117,0.25);
-    color: #9FE1CB;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 4px 14px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-  }
-  .cover h1 {
-    font-size: 36px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 12px;
-    position: relative;
-    z-index: 1;
-  }
-  .cover p {
-    font-size: 14px;
-    color: #9FE1CB;
-    font-style: italic;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── Part banner ── */
-  .part-banner {
-    padding: 22px 40px 18px;
-    position: relative;
-  }
-  .part-banner.teal { background: var(--teal); }
-  .part-banner.purple { background: var(--purple); }
-  .part-banner .part-emoji { font-size: 28px; margin-right: 10px; }
-  .part-banner h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: white;
-    display: inline;
-  }
-  .part-banner p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.7);
-    margin-top: 6px;
-    font-style: italic;
-  }
-
-  /* ── Content ── */
-  .content { padding: 32px 40px; }
-
-  /* ── Section title ── */
-  .sec-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--dark);
-    margin: 32px 0 12px;
-    padding-left: 14px;
-    border-left: 4px solid var(--teal-mid);
-  }
-  .sec-title.purple { border-left-color: var(--purple); }
-  .sec-title:first-child { margin-top: 0; }
-
-  /* ── Sub title ── */
-  .sub-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--teal);
-    margin: 20px 0 8px;
-  }
-  .sub-title.amber { color: var(--amber); }
-  .sub-title.purple { color: var(--purple); }
-
-  /* ── Body text ── */
-  p { font-size: 13.5px; line-height: 1.75; margin: 6px 0; }
-  b { font-weight: 600; }
-  em { font-style: italic; color: var(--muted); }
-
-  /* ── Formula ── */
-  .formula {
-    background: var(--teal-light);
-    border: 1.5px solid var(--teal-mid);
-    border-radius: 8px;
-    padding: 12px 20px;
-    text-align: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--teal);
-    margin: 12px 0;
-  }
-  .formula.amber { background: var(--amber-light); border-color: var(--amber); color: var(--amber); }
-  .formula.gray  { background: var(--gray-light); border-color: var(--gray-mid); color: var(--dark); }
-  .formula.purple{ background: var(--purple-light); border-color: var(--purple); color: var(--purple); }
-  .formula.sm    { font-size: 13px; padding: 8px 14px; margin: 6px 0; }
-
-  /* ── Callout boxes ── */
-  .callout {
-    border-radius: 0 8px 8px 0;
-    padding: 12px 16px;
-    margin: 12px 0;
-    border-left-width: 4px;
-    border-left-style: solid;
-  }
-  .callout .callout-head {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .callout .callout-body { font-size: 13px; line-height: 1.65; }
-  .callout.tip   { background: var(--teal-light); border-color: var(--teal-mid); }
-  .callout.tip .callout-head { color: var(--teal); }
-  .callout.warn  { background: var(--amber-light); border-color: var(--amber); }
-  .callout.warn .callout-head { color: var(--amber); }
-  .callout.ex    { background: var(--blue-light); border-color: var(--blue); }
-  .callout.ex .callout-head  { color: var(--blue); }
-  .callout.def   { background: var(--gray-light); border-color: var(--dark); }
-  .callout.def .callout-head { color: var(--dark); }
-
-  /* ── Two column ── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 12px 0; }
-
-  /* ── Card ── */
-  .card {
-    background: var(--gray-light);
-    border: 1px solid var(--gray-mid);
-    border-radius: 10px;
-    padding: 14px 16px;
-  }
-  .card.teal   { background: var(--teal-light); border-color: var(--teal); }
-  .card.amber  { background: var(--amber-light); border-color: var(--amber); }
-  .card.blue   { background: var(--blue-light); border-color: var(--blue); }
-  .card.purple { background: var(--purple-light); border-color: var(--purple); }
-  .card-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 8px;
-    color: var(--teal);
-  }
-  .card.amber .card-label { color: var(--amber); }
-  .card.blue .card-label  { color: var(--blue); }
-  .card.purple .card-label { color: var(--purple); }
-
-  /* ── Highlight band ── */
-  .highlight-band {
-    background: var(--teal-xlight);
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin: 10px 0;
-    font-size: 13px;
-    color: var(--teal);
-    font-weight: 500;
-  }
-
-  /* ── Tables ── */
-  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
-  th { background: var(--teal-mid); color: white; font-weight: 600; padding: 8px 12px; text-align: left; }
-  td { padding: 7px 12px; border: 1px solid var(--gray-mid); vertical-align: top; line-height: 1.55; }
-  tr:nth-child(even) td { background: var(--gray-light); }
-
-  /* ── Lists ── */
-  ul { padding-left: 20px; margin: 6px 0; }
-  ul li { font-size: 13px; line-height: 1.75; }
-
-  /* ── Numbered steps ── */
-  .steps { margin: 12px 0; }
-  .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
-  .step-num {
-    min-width: 26px; height: 26px;
-    background: var(--teal-mid); color: white;
-    border-radius: 50%; font-size: 13px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 2px;
-  }
-  .step-text { font-size: 13px; line-height: 1.7; }
-
-  /* ── Key fact ── */
-  .key-fact {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--dark);
-    color: white;
-    border-radius: 8px;
-    padding: 12px 18px;
-    margin: 12px 0;
-    font-size: 13.5px;
-    font-weight: 500;
-  }
-  .key-fact .kf-icon { font-size: 22px; flex-shrink: 0; }
-
-  /* ── HR ── */
-  hr { border: none; border-top: 1px solid var(--gray-mid); margin: 28px 0; }
-
-  /* ── Footer ── */
-  .footer {
-    background: var(--teal-mid);
-    padding: 18px 40px;
-    text-align: center;
-    font-size: 13px;
-    color: rgba(255,255,255,0.88);
-    font-style: italic;
-  }
-
-  @media print {
-    body { background: white; padding: 0; }
-    .page { box-shadow: none; border-radius: 0; max-width: 100%; }
-  }
-
-.vec {
-  position: relative;
-  display: inline-block;
-  padding-top: 0.2em;
-  margin: 0 0.05em;
+:root {
+  --teal:        #0F6E56;
+  --teal-mid:    #1D9E75;
+  --teal-light:  #E1F5EE;
+  --amber:       #9A5F0F;
+  --amber-light: #FDF3DC;
+  --blue:        #185FA5;
+  --blue-light:  #DCE9F9;
+  --purple:      #534AB7;
+  --purple-light:#EEEDFE;
+  --red:         #A32D2D;
+  --red-light:   #FDEAEA;
+  --dark:        #1a1a2e;
+  --gray-light:  #F5F4F0;
+  --gray-mid:    #D3D1C7;
+  --text:        #2C2C2A;
+  --muted:       #6B6A65;
 }
 
-.vec::after {
-  content: "→";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -0.55em;
-  font-size: 0.75em;
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: #ECEAE4;
+  padding: 12px;
+  line-height: 1.65;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.10);
+}
+
+/* ── HEADER ── */
+.hdr {
+  background: var(--dark);
+  padding: 24px 20px 20px;
   text-align: center;
-  line-height: 1;
-  pointer-events: none;
+}
+.hdr h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .03em;
+  margin-bottom: 5px;
+}
+.hdr p { font-size: 12px; color: #9FE1CB; font-style: italic; }
+
+/* ── CONTENT ── */
+.content { padding: 18px 16px; }
+
+/* ── CHAPTER LABEL ── */
+.chap {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 24px 0 8px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--teal-mid);
+}
+.chap:first-child { margin-top: 0; }
+.chap.purple { color: var(--purple); border-bottom-color: var(--purple); }
+
+/* ── SECTION TITLE ── */
+.sec {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 16px 0 6px;
 }
 
+/* ── FORMULA ── */
+.formula {
+  background: var(--teal-light);
+  border: 1.5px solid var(--teal-mid);
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--teal);
+  margin: 8px 0;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.formula.amber  { background:var(--amber-light);  border-color:var(--amber);  color:var(--amber); }
+.formula.purple { background:var(--purple-light); border-color:var(--purple); color:var(--purple);}
+.formula.gray   { background:var(--gray-light);   border-color:var(--gray-mid); color:var(--dark);}
+.formula.blue   { background:var(--blue-light);   border-color:var(--blue);   color:var(--blue);}
+.formula.sm     { font-size: 12px; padding: 7px 11px; }
+
+/* ── CALLOUT ── */
+.callout {
+  border-left: 4px solid var(--amber);
+  background: var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  color: var(--amber);
+  margin: 8px 0;
+  line-height: 1.55;
+}
+.callout.info   { border-color:var(--teal);   background:var(--teal-light);   color:var(--teal); }
+.callout.purple { border-color:var(--purple); background:var(--purple-light); color:var(--purple);}
+.callout.blue   { border-color:var(--blue);   background:var(--blue-light);   color:var(--blue);}
+
+/* ── CARD ── */
+.card {
+  background: var(--gray-light);
+  border: 1px solid var(--gray-mid);
+  border-radius: 10px;
+  padding: 11px 13px;
+  margin: 6px 0;
+}
+.card .label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--teal);
+  margin-bottom: 5px;
+}
+
+/* ── GRID ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 8px 0; }
+
+/* ── TABLE ── */
+.tbl { width:100%; border-collapse:collapse; margin:8px 0; font-size:12px; }
+.tbl th { background:var(--teal-mid); color:#fff; font-weight:600; padding:7px 9px; text-align:left; }
+.tbl td { padding:6px 9px; border:1px solid var(--gray-mid); vertical-align:top; line-height:1.45; }
+.tbl tr:nth-child(even) td { background:var(--gray-light); }
+.tbl.purple th { background:var(--purple); }
+
+/* ── STEPS ── */
+.step { display:flex; align-items:flex-start; gap:9px; margin-bottom:7px; }
+.snum {
+  min-width:22px; height:22px;
+  background:var(--teal-mid); color:#fff;
+  border-radius:50%; font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:2px;
+}
+.snum.purple { background:var(--purple); }
+.stxt { font-size:13px; line-height:1.55; }
+
+/* ── BADGE ── */
+.badge {
+  display:inline-block; font-size:10px; font-weight:600;
+  padding:1px 7px; border-radius:20px; margin:0 1px;
+}
+.bt { background:var(--teal-light); color:var(--teal); }
+.ba { background:var(--amber-light); color:var(--amber); }
+.bb { background:var(--blue-light); color:var(--blue); }
+.bp { background:var(--purple-light); color:var(--purple); }
+
+/* ── MOLECULE DISPLAY ── */
+.mol {
+  background: #fff;
+  border: 1.5px solid var(--gray-mid);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 6px 0;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 12.5px;
+  line-height: 2;
+}
+.mol .name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ── IR BAND ── */
+.ir-band {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+  font-size: 12px;
+}
+.ir-band .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ir-band.oh-alcool   { background:var(--teal-light); }
+.ir-band.oh-alcool .dot   { background:var(--teal); }
+.ir-band.oh-acide    { background:var(--amber-light); }
+.ir-band.oh-acide .dot    { background:var(--amber); }
+.ir-band.co          { background:var(--purple-light); }
+.ir-band.co .dot          { background:var(--purple); }
+
+/* ── HR ── */
+hr { border:none; border-top:1px solid var(--gray-mid); margin:14px 0; }
+
+/* ── FOOTER ── */
+.footer {
+  background:var(--teal-mid); padding:13px 16px;
+  text-align:center; font-size:11.5px;
+  color:rgba(255,255,255,.85); font-style:italic;
+}
+
+/* ── BODY ── */
+p { font-size:13.5px; line-height:1.65; margin:4px 0; }
+b { font-weight:600; }
+ul { padding-left:18px; margin:4px 0; }
+li { font-size:13px; line-height:1.65; }
+small { font-size:11.5px; color:var(--muted); }
+sub, sup { font-size: 0.75em; }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- COVER -->
-  <div class="cover">
-    <div class="tag">Physique-Chimie · Lycée</div>
-    <h1>Mouvement &amp; Énergie</h1>
-    <p>C11 · Mouvement d'un système &nbsp;&nbsp;|&nbsp;&nbsp; C12 · Aspects énergétiques des phénomènes mécaniques</p>
+<!-- HEADER -->
+<div class="hdr">
+  <h1>FICHE DE RÉVISION — CHIMIE</h1>
+  <p>C13 · Structures des entités organiques &nbsp;|&nbsp; Spectroscopie IR</p>
+</div>
+
+<div class="content">
+
+<!-- ═══════ I. REPRÉSENTATION ═══════ -->
+<div class="chap">I — Représentation des molécules</div>
+
+<div class="g2">
+  <div class="card" style="background:var(--teal-light);border-color:var(--teal);">
+    <div class="label">Formule développée</div>
+    <p style="font-size:12px;">Toutes les liaisons sont représentées (C–H inclus).</p>
   </div>
-
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- CHAPITRE 11 -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <div class="part-banner teal">
-    <span class="part-emoji">🏃</span><h2>Chapitre 11 — Mouvement d'un système</h2>
-    <p>Comment décrire et quantifier le mouvement d'un objet ?</p>
+  <div class="card" style="background:var(--blue-light);border-color:var(--blue);">
+    <div class="label" style="color:var(--blue);">Formule brute</div>
+    <p style="font-size:12px;">Liaisons non représentées. Ex : <b>C₃H₈O</b></p>
   </div>
-
-  <div class="content">
-
-    <!-- I. Rappels -->
-    <div class="sec-title">I. Quelques rappels essentiels</div>
-
-    <div class="callout def">
-      <div class="callout-head">📖 Définition</div>
-      <div class="callout-body">Un <b>système mécanique</b> est un objet dont on étudie le mouvement. Le <b>référentiel</b> est le solide par rapport auquel on observe ce mouvement. La trajectoire et la vitesse <b>dépendent du référentiel choisi</b>.</div>
-    </div>
-
-    <div class="sub-title">Les référentiels galiléens</div>
-    <p>Dans ces référentiels, les lois de Newton s'appliquent :</p>
-
-    <div class="three-col" style="margin-top:10px;">
-      <div class="card teal">
-        <div class="card-label">Terrestre</div>
-        <p style="font-size:12.5px;">Origine à la surface de la Terre.<br><em>Utilisé dans presque tous les exercices du lycée.</em></p>
-      </div>
-      <div class="card blue">
-        <div class="card-label" style="color:var(--blue);">Géocentrique</div>
-        <p style="font-size:12.5px;">Origine au centre de la Terre.<br><em>Mouvements des satellites.</em></p>
-      </div>
-      <div class="card purple">
-        <div class="card-label" style="color:var(--purple);">Héliocentrique</div>
-        <p style="font-size:12.5px;">Origine au centre du Soleil.<br><em>Mouvements des planètes.</em></p>
-      </div>
-    </div>
-
-    <div class="callout tip" style="margin-top:14px;">
-      <div class="callout-head">💡 Astuce</div>
-      <div class="callout-body">Dans un exercice, commence toujours par écrire : <b>"Système : {…} — Référentiel : terrestre"</b>. C'est attendu par le correcteur !</div>
-    </div>
-
-    <hr>
-
-    <!-- II. Vecteur vitesse -->
-    <div class="sec-title">II. Le vecteur vitesse instantanée</div>
-
-    <p>La vitesse instantanée en un point M<sub>i</sub> est approchée par la vitesse moyenne calculée sur un très court intervalle de temps autour de ce point. On utilise les deux positions voisines :</p>
-
-    <div class="formula">v<sub>i</sub> = M<sub>i</sub>M<sub>i+1</sub> &divide; (t<sub>i+1</sub> &minus; t<sub>i</sub>)</div>
-
-    <div class="two-col">
-      <div>
-        <p><b>M<sub>i</sub>M<sub>i+1</sub></b> : distance réelle entre les deux positions, <b>en mètres</b>.</p>
-        <p><b>(t<sub>i+1</sub> &minus; t<sub>i</sub>)</b> : intervalle de temps, <b>en secondes</b>.</p>
-        <div class="callout warn" style="margin-top:10px;">
-          <div class="callout-head">⚠ Attention !</div>
-          <div class="callout-body">Les positions sur un schéma sont en centimètres. Il faut <b>convertir en mètres</b> (÷ 100) ET tenir compte de l'échelle avant de calculer v !</div>
-        </div>
-      </div>
-      <div class="card teal">
-        <div class="card-label">Les 4 caractéristiques du vecteur <span class="vec">v</span><sub>i</sub></div>
-        <ul>
-          <li><b>Origine :</b> point M<sub>i</sub></li>
-          <li><b>Direction :</b> tangente à la trajectoire en M<sub>i</sub></li>
-          <li><b>Sens :</b> celui du mouvement</li>
-          <li><b>Norme :</b> valeur v<sub>i</sub> calculée (en m/s)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="sub-title">Utiliser l'échelle des distances</div>
-    <p>Les schémas de chronophotographie sont à une certaine échelle. Pour retrouver la distance réelle :</p>
-
-    <div class="formula sm gray">Distance réelle = (Valeur réelle de référence &times; Mesure sur schéma) &divide; Longueur de référence mesurée</div>
-
-    <div class="callout ex">
-      <div class="callout-head">📝 Exemple du cours — objet dans un liquide</div>
-      <div class="callout-body">
-        Échelle : 20 cm réel &harr; 5,2 cm mesuré. Segment G<sub>3</sub>G<sub>4</sub> mesuré = 0,45 cm.<br>
-        Distance réelle = 20 &times; 0,45 &divide; 5,2 = <b>1,7 cm = 0,017 m</b><br>
-        Avec &Delta;t = 0,050 s : v<sub>3</sub> = 0,017 &divide; 0,050 = <b>0,34 m/s</b>
-      </div>
-    </div>
-
-    <div class="sub-title">Tracer le vecteur <span class="vec">v</span><sub>i</sub> sur un schéma</div>
-    <p>Une fois la vitesse calculée, on utilise l'<b>échelle des vitesses</b> pour tracer le vecteur :</p>
-    <div class="formula sm gray">Longueur du vecteur = Vitesse calculée &divide; Valeur de l'échelle</div>
-    <div class="callout ex">
-      <div class="callout-head">📝 Exemple</div>
-      <div class="callout-body">v<sub>3</sub> = 0,34 m/s, échelle : 1 cm &harr; 0,20 m/s &rarr; <span class="vec">v</span><sub>3</sub> mesure 0,34 &divide; 0,20 = <b>1,7 cm</b> sur le schéma.</div>
-    </div>
-
-    <hr>
-
-    <!-- III. Vecteur delta v -->
-    <div class="sec-title">III. Le vecteur variation de vitesse &Delta;<span class="vec">v</span></div>
-
-    <p>Ce vecteur décrit <b>comment la vitesse change</b> entre deux instants. Il est fondamental car il est directement lié aux forces qui s'exercent sur le système (2<sup>e</sup> loi de Newton).</p>
-
-    <div class="formula">&Delta;<span class="vec">v</span><sub>(i &rarr; i+1)</sub> = <span class="vec">v</span><sub>i+1</sub> &minus; <span class="vec">v</span><sub>i</sub></div>
-
-    <div class="sub-title">Comment construire &Delta;<span class="vec">v</span> graphiquement ?</div>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text">Tracer <span class="vec">v</span><sub>i</sub> et <span class="vec">v</span><sub>i+1</sub> aux points correspondants (via l'échelle des vitesses).</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text">Au point M<sub>i+1</sub>, reporter &minus;<span class="vec">v</span><sub>i</sub> (même vecteur que <span class="vec">v</span><sub>i</sub> mais en sens opposé) à l'extrémité de <span class="vec">v</span><sub>i+1</sub>.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text">&Delta;<span class="vec">v</span> va de l'<b>origine de <span class="vec">v</span><sub>i+1</sub></b> jusqu'à l'<b>extrémité de &minus;<span class="vec">v</span><sub>i</sub></b>.</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-text">Mesurer la longueur de &Delta;<span class="vec">v</span> et utiliser l'échelle des vitesses pour trouver &Delta;v.</div></div>
-    </div>
-
-    <div class="sub-title">Ce que &Delta;<span class="vec">v</span> nous dit sur le mouvement</div>
-
-    <table>
-      <tr><th>Type de mouvement</th><th>Direction de &Delta;<span class="vec">v</span></th><th>Sens de &Delta;<span class="vec">v</span></th><th>Norme &Delta;v</th></tr>
-      <tr>
-        <td><b>Rectiligne accéléré</b><br><em>v<sub>3</sub> &gt; v<sub>2</sub>, vitesse augmente</em></td>
-        <td>Celle de la trajectoire</td>
-        <td>Sens du mouvement</td>
-        <td>&Delta;v = v<sub>3</sub> &minus; v<sub>2</sub></td>
-      </tr>
-      <tr>
-        <td><b>Rectiligne décéléré</b><br><em>v<sub>3</sub> &lt; v<sub>2</sub>, vitesse diminue</em></td>
-        <td>Celle de la trajectoire</td>
-        <td>Opposé au mouvement</td>
-        <td>&Delta;v = v<sub>2</sub> &minus; v<sub>3</sub></td>
-      </tr>
-      <tr>
-        <td><b>Curviligne ou circulaire</b><br><em>trajectoire courbe</em></td>
-        <td colspan="2">À déduire après construction graphique</td>
-        <td>&Delta;v &ne; v<sub>3</sub> &minus; v<sub>2</sub><br><b>Construction obligatoire !</b></td>
-      </tr>
-    </table>
-
-    <div class="callout warn">
-      <div class="callout-head">⚠ Piège fréquent</div>
-      <div class="callout-body">Pour un mouvement non rectiligne (trajectoire courbe), il ne faut <b>surtout pas</b> calculer &Delta;v = v<sub>3</sub> &minus; v<sub>2</sub>. Ces valeurs sont des scalaires, pas des vecteurs. La soustraction vectorielle donne un résultat différent !</div>
-    </div>
-
-    <hr>
-
-    <!-- IV. Forces -->
-    <div class="sec-title">IV. L'effet des forces sur le mouvement</div>
-
-    <div class="callout def">
-      <div class="callout-head">📖 Définition</div>
-      <div class="callout-body">Une <b>force</b> modélise une action subie par un objet. Elle peut modifier sa <b>trajectoire</b> et/ou la <b>valeur de sa vitesse</b>. On la représente par un vecteur caractérisé par son origine, sa direction, son sens et sa norme.</div>
-    </div>
-
-    <div class="sub-title">1<sup>ère</sup> loi de Newton — Principe d'inertie</div>
-    <p>Si la somme vectorielle de toutes les forces est nulle, le mouvement ne change pas :</p>
-
-    <div class="formula gray">&Sigma;<span class="vec">f</span> = <span class="vec">0</span> &nbsp;&hArr;&nbsp; &Delta;<span class="vec">v</span> = <span class="vec">0</span> &nbsp;&hArr;&nbsp; v = constante</div>
-
-    <div class="key-fact">
-      <span class="kf-icon">💡</span>
-      <span>Le système est alors soit <b>immobile</b>, soit en mouvement <b>rectiligne uniforme</b> (même vitesse, même direction).</span>
-    </div>
-
-    <div class="sub-title">2<sup>e</sup> loi de Newton — Relation approchée</div>
-    <p>La résultante des forces est liée à la variation de vitesse. C'est la relation fondamentale de la mécanique :</p>
-
-    <div class="formula">&Sigma;<span class="vec">f</span> = m &times; &Delta;<span class="vec">v</span> &divide; &Delta;t</div>
-
-    <div class="two-col">
-      <div class="card">
-        <div class="card-label">Ce que ça implique</div>
-        <ul>
-          <li>&Sigma;<span class="vec">f</span> et &Delta;<span class="vec">v</span> ont toujours <b>même direction et même sens</b> (car m/&Delta;t &gt; 0)</li>
-          <li>Plus la masse est grande, plus il faut une grande force pour modifier la vitesse</li>
-          <li>&Delta;v est <b>inversement proportionnel</b> à m : si m double, &Delta;v est divisé par 2 (à &Sigma;F et &Delta;t constants)</li>
-        </ul>
-      </div>
-      <div class="card amber">
-        <div class="card-label">Cas spécial : chute libre</div>
-        <p style="font-size:12.5px;">En chute libre, seul le poids agit : &Sigma;<span class="vec">f</span> = <span class="vec">P</span> = m&times;g</p>
-        <div class="formula amber sm">&Delta;v = g &times; &Delta;t</div>
-        <ul style="margin-top:8px;">
-          <li>&Delta;<span class="vec">v</span> est <b>vertical, vers le bas</b></li>
-          <li>La variation de vitesse est <b>indépendante de la masse</b> !</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="callout ex">
-      <div class="callout-head">📝 Exemple — Athlète sur trampoline (du cours)</div>
-      <div class="callout-body">
-        Athlète de 70 kg en chute libre depuis le sommet de sa trajectoire, pendant &Delta;t = 1,0 s.<br>
-        &bull; Au sommet : v<sub>1</sub> = 0 m/s<br>
-        &bull; &Delta;v = g &times; &Delta;t = 10 &times; 1,0 = <b>10 m/s</b><br>
-        &bull; v<sub>2</sub> = v<sub>1</sub> + &Delta;v = 0 + 10 = <b>10 m/s</b> à l'atterrissage<br>
-        La masse de l'athlète n'intervient pas dans ce calcul !
-      </div>
-    </div>
-
-  </div><!-- /content C11 -->
-
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- CHAPITRE 12 -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <div class="part-banner purple">
-    <span class="part-emoji">⚡</span><h2>Chapitre 12 — Aspects énergétiques</h2>
-    <p>Comment l'énergie se transforme et se conserve dans les phénomènes mécaniques ?</p>
+  <div class="card" style="background:var(--amber-light);border-color:var(--amber);">
+    <div class="label" style="color:var(--amber);">Formule semi-dév.</div>
+    <p style="font-size:12px;">Liaisons C–H non représentées. Ex : CH₃–CH₂–OH</p>
   </div>
+  <div class="card" style="background:var(--purple-light);border-color:var(--purple);">
+    <div class="label" style="color:var(--purple);">Formule topologique</div>
+    <p style="font-size:12px;">Segments = liaisons C–C. C et H non montrés. Autres atomes visibles (OH, O…).</p>
+  </div>
+</div>
 
-  <div class="content">
+<div class="callout info">💡 En formule topologique : chaque sommet ou extrémité = un atome C (avec ses H implicites). Seuls les atomes autres que C et H sont écrits explicitement.</div>
 
-    <!-- I. Les 3 énergies -->
-    <div class="sec-title purple">I. Les trois énergies en mécanique</div>
+<hr>
 
-    <p>Un système possède de l'énergie à cause de son <b>mouvement</b> (énergie cinétique) et/ou de sa <b>position</b> (énergie potentielle de pesanteur). Ces deux formes s'additionnent pour donner l'énergie mécanique.</p>
+<!-- ═══════ II. NOMENCLATURE ═══════ -->
+<div class="chap">II — Nomenclature</div>
 
-    <div class="sub-title">L'énergie cinétique E<sub>c</sub> — l'énergie du mouvement</div>
+<div class="sec">Radicaux (chaîne carbonée)</div>
+<table class="tbl">
+  <tr><th>n° C</th><th>Radical</th><th>n° C</th><th>Radical</th></tr>
+  <tr><td>1</td><td>méthan</td><td>6</td><td>hexan</td></tr>
+  <tr><td>2</td><td>éthan</td><td>7</td><td>heptan</td></tr>
+  <tr><td>3</td><td>propan</td><td>8</td><td>octan</td></tr>
+  <tr><td>4</td><td>butan</td><td>9</td><td>nonan</td></tr>
+  <tr><td>5</td><td>pentan</td><td>10</td><td>décan</td></tr>
+</table>
 
-    <div class="formula">E<sub>c</sub> = &frac12; &times; m &times; v&sup2; &nbsp;&nbsp;(en Joules)</div>
+<div class="sec">Substituants / Ramifications</div>
+<div class="g2">
+  <div class="card">
+    <div class="label">–CH₃</div>
+    <p style="font-size:13px;font-weight:600;">méthyl</p>
+  </div>
+  <div class="card">
+    <div class="label">–CH₂–CH₃</div>
+    <p style="font-size:13px;font-weight:600;">éthyl</p>
+  </div>
+</div>
 
-    <div class="two-col">
-      <div>
-        <ul>
-          <li>m : masse en kg &nbsp;|&nbsp; v : vitesse en m/s</li>
-          <li>E<sub>c</sub> = 0 J si le système est immobile (v = 0)</li>
-          <li>E<sub>c</sub> augmente si la <b>masse ou la vitesse</b> augmente</li>
-          <li>Analyse dimensionnelle : 1 J = 1 kg&middot;m²&middot;s&minus;²</li>
-        </ul>
-      </div>
-      <div class="callout ex">
-        <div class="callout-head">📝 Exemple</div>
-        <div class="callout-body">Cycliste + vélo (70 kg) à v = 9,6 m/s :<br>E<sub>c</sub> = &frac12; &times; 70 &times; 9,6² = <b>3 226 J &asymp; 3,2 kJ</b></div>
-      </div>
-    </div>
+<div class="sec">Familles et groupes caractéristiques</div>
+<table class="tbl">
+  <tr><th>Famille</th><th>Groupe caract.</th><th>Suffixe</th></tr>
+  <tr><td><b>Alcane</b></td><td>aucun</td><td>…ane</td></tr>
+  <tr><td><b>Alcool</b></td><td>hydroxyle –OH</td><td>…an-x-ol</td></tr>
+  <tr><td><b>Aldéhyde</b></td><td>carbonyle –CHO (bout)</td><td>…anal</td></tr>
+  <tr><td><b>Cétone</b></td><td>carbonyle C=O (milieu)</td><td>…an-x-one</td></tr>
+  <tr><td><b>Acide carboxylique</b></td><td>carboxyle –COOH</td><td>acide …anoïque</td></tr>
+</table>
 
-    <div class="sub-title">L'énergie potentielle de pesanteur E<sub>pp</sub> — l'énergie de position</div>
+<hr>
 
-    <div class="formula">E<sub>pp</sub> = m &times; g &times; z &nbsp;&nbsp;(en Joules)</div>
+<!-- ═══════ III. MÉTHODE NOMMAGE ═══════ -->
+<div class="chap">III — Méthode pour nommer</div>
 
-    <div class="two-col">
-      <div>
-        <ul>
-          <li>z : altitude en m par rapport au <b>niveau de référence choisi</b></li>
-          <li>g = 9,8 N&middot;kg&minus;¹ (ou 10 N&middot;kg&minus;¹ si l'énoncé le précise)</li>
-          <li>E<sub>pp</sub> = 0 J pour z = 0 m</li>
-          <li>Axe Oz orienté vers le haut</li>
-        </ul>
-      </div>
-      <div class="callout ex">
-        <div class="callout-head">📝 Exemple</div>
-        <div class="callout-body">Pot de fleurs (3,0 kg) à z = 1,5 m :<br>E<sub>pp</sub> = 3,0 &times; 9,81 &times; 1,5 = <b>44,1 J &asymp; 45 J</b></div>
-      </div>
-    </div>
+<div class="step"><div class="snum">1</div><div class="stxt"><b>Identifier le groupe caractéristique</b> → donne la famille et le suffixe.</div></div>
+<div class="step"><div class="snum">2</div><div class="stxt"><b>Trouver la chaîne la plus longue</b> qui contient ce groupe → donne le radical.</div></div>
+<div class="step"><div class="snum">3</div><div class="stxt"><b>Numéroter</b> la chaîne pour que l'indice du groupe caractéristique soit le plus petit possible.</div></div>
+<div class="step"><div class="snum">4</div><div class="stxt"><b>Repérer les ramifications</b> et leur position → préfixe : x-…yl (ordre alphabétique).</div></div>
 
-    <div class="callout tip">
-      <div class="callout-head">💡 Astuce — choix du niveau de référence</div>
-      <div class="callout-body">Le niveau z = 0 se choisit librement. Prendre le point le plus bas du problème simplifie souvent les calculs (on évite les altitudes négatives).</div>
-    </div>
+<div class="callout">⚠ Si plusieurs groupes identiques : ajouter <b>di</b> (2) ou <b>tri</b> (3). Ex : 2,3-diméthyl…</div>
+<div class="callout info">💡 Les ramifications se placent en ordre alphabétique avant le nom : <b>4-éthyl-5-méthyl</b>hexan-3-ol</div>
 
-    <div class="sub-title">L'énergie mécanique E<sub>m</sub> — la grande somme</div>
+<hr>
 
-    <div class="formula purple">E<sub>m</sub> = E<sub>c</sub> + E<sub>pp</sub> &nbsp;&nbsp;(en Joules)</div>
+<!-- ═══════ IV. EXEMPLES PAR FAMILLE ═══════ -->
+<div class="chap">IV — Exemples par famille</div>
 
-    <p>L'énergie peut se convertir d'une forme à l'autre : quand un plongeur tombe, E<sub>pp</sub> &darr; et E<sub>c</sub> &uarr;, mais E<sub>m</sub> reste constante (sans frottements).</p>
+<div class="sec">Alcanes</div>
+<div class="g2">
+  <div class="mol">
+    CH₃–CH–CH₂–CH₃<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;CH₃
+    <span class="name">2-méthylbutane</span>
+  </div>
+  <div class="mol">
+    H₃C–CH–CH–CH₃<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|<br>
+    &nbsp;&nbsp;&nbsp;CH₃ CH₃
+    <span class="name">2,3-diméthylbutane</span>
+  </div>
+</div>
 
-    <table style="margin-top:10px;">
-      <tr><th>Situation</th><th>E<sub>c</sub></th><th>E<sub>pp</sub></th><th>E<sub>m</sub></th></tr>
-      <tr><td>Chute libre (sans frottements)</td><td>&uarr; augmente</td><td>&darr; diminue</td><td>= constante</td></tr>
-      <tr><td>Montée (sans frottements)</td><td>&darr; diminue</td><td>&uarr; augmente</td><td>= constante</td></tr>
-      <tr><td>Déplacement horizontal avec frottements</td><td>&darr; diminue</td><td>= constante</td><td>&darr; diminue</td></tr>
-      <tr><td>Chute dans un fluide (avec frottements)</td><td>&uarr; puis constante</td><td>&darr; diminue</td><td>&darr; diminue</td></tr>
-    </table>
+<div class="sec">Alcools</div>
+<div class="g2">
+  <div class="mol">
+    H₃C–CH₂–OH
+    <span class="name">éthan-1-ol (éthanol)</span>
+  </div>
+  <div class="mol">
+    H₃C–CH–CH₃<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OH
+    <span class="name">propan-2-ol</span>
+  </div>
+</div>
+<div class="callout info">💡 Pour les alcools, numéroter depuis le bout le plus proche du OH.</div>
 
-    <hr>
+<div class="sec">Aldéhydes et Cétones</div>
+<table class="tbl">
+  <tr><th>Type</th><th>Groupe</th><th>Position</th><th>Exemple</th></tr>
+  <tr><td><b>Aldéhyde</b></td><td>C=O avec H</td><td>Bout de chaîne (C n°1)</td><td>butanal</td></tr>
+  <tr><td><b>Cétone</b></td><td>C=O sans H</td><td>Milieu de chaîne</td><td>butan-2-one</td></tr>
+</table>
+<div class="callout">⚠ Différence clé : l'<b>aldéhyde</b> a un H sur le carbone fonctionnel (–CHO), la <b>cétone</b> non (–CO–).</div>
 
-    <!-- II. Travail -->
-    <div class="sec-title purple">II. Le travail d'une force</div>
+<div class="sec">Acides carboxyliques</div>
+<div class="mol">
+  HO–C(=O)–CH₂–CH₂–… <br>
+  <span style="font-size:11px;color:var(--muted);">C du carboxyle = toujours n°1</span>
+  <span class="name">acide …anoïque</span>
+</div>
+<div class="callout info">💡 Le groupe carboxyle (–COOH) est toujours au bout de chaîne, numéroté 1. On n'indique pas son indice de position.</div>
 
-    <div class="callout def">
-      <div class="callout-head">📖 Définition</div>
-      <div class="callout-body">Le <b>travail</b> d'une force quantifie l'effet de cette force sur l'énergie du système lors d'un déplacement. C'est un transfert d'énergie, exprimé en <b>Joules (J)</b>. Lorsqu'une force fait un travail positif, elle cède de l'énergie au système (l'aide à avancer) ; négatif, elle en retire (elle freine).</div>
-    </div>
+<hr>
 
-    <div class="formula">W(<span class="vec">f</span>) = F &times; AB &times; cos &alpha;</div>
-    <p style="text-align:center; font-size:12.5px; color:var(--muted);">&alpha; = angle entre <span class="vec">f</span> et le vecteur déplacement <span class="vec">AB</span></p>
+<!-- ═══════ RÉCAP FAMILLES ═══════ -->
+<div class="chap">Récapitulatif — Identifier la famille</div>
 
-    <div class="three-col" style="margin-top:14px;">
-      <div class="card" style="background:#f0fbf5; border-color:#1D9E75;">
-        <div class="card-label">0° &le; &alpha; &lt; 90°</div>
-        <p style="font-size:12.5px;">cos &alpha; &gt; 0 &rarr; <b style="color:green;">W &gt; 0</b></p>
-        <p style="font-size:12px; color:var(--muted);">Travail <b>moteur</b> — la force aide le mouvement</p>
-      </div>
-      <div class="card">
-        <div class="card-label" style="color:var(--blue);">&alpha; = 90°</div>
-        <p style="font-size:12.5px;">cos &alpha; = 0 &rarr; <b>W = 0</b></p>
-        <p style="font-size:12px; color:var(--muted);">Travail <b>nul</b> — aucun effet sur l'énergie</p>
-      </div>
-      <div class="card" style="background:#fef2f2; border-color:#A32D2D;">
-        <div class="card-label" style="color:var(--red);">90° &lt; &alpha; &le; 180°</div>
-        <p style="font-size:12.5px;">cos &alpha; &lt; 0 &rarr; <b style="color:var(--red);">W &lt; 0</b></p>
-        <p style="font-size:12px; color:var(--muted);">Travail <b>résistant</b> — la force freine le mouvement</p>
-      </div>
-    </div>
+<div class="g2">
+  <div class="card" style="background:var(--teal-light);border-color:var(--teal);">
+    <div class="label">Alcool</div>
+    <p style="font-size:12px;">Présence de <b>–OH</b> sur carbone de chaîne.</p>
+    <p style="font-size:11.5px;color:var(--muted);">Propan-2-ol, éthanol…</p>
+  </div>
+  <div class="card" style="background:var(--amber-light);border-color:var(--amber);">
+    <div class="label" style="color:var(--amber);">Aldéhyde</div>
+    <p style="font-size:12px;">C=O en <b>bout de chaîne</b> avec H.</p>
+    <p style="font-size:11.5px;color:var(--muted);">Éthanal, butanal…</p>
+  </div>
+  <div class="card" style="background:var(--purple-light);border-color:var(--purple);">
+    <div class="label" style="color:var(--purple);">Cétone</div>
+    <p style="font-size:12px;">C=O <b>au milieu</b> de chaîne, entre 2 C.</p>
+    <p style="font-size:11.5px;color:var(--muted);">Propanone, butan-2-one…</p>
+  </div>
+  <div class="card" style="background:var(--red-light);border-color:var(--red);">
+    <div class="label" style="color:var(--red);">Acide carboxylique</div>
+    <p style="font-size:12px;">–COOH en bout : C=O <b>et</b> –OH sur même carbone.</p>
+    <p style="font-size:11.5px;color:var(--muted);">Acide éthanoïque…</p>
+  </div>
+</div>
 
-    <div class="sub-title">Le travail du poids <span class="vec">P</span> — une force spéciale</div>
+<hr>
 
-    <div class="formula">W(<span class="vec">P</span>) = m &times; g &times; (z<sub>A</sub> &minus; z<sub>B</sub>)</div>
+<!-- ═══════ V. SPECTROSCOPIE IR ═══════ -->
+<div class="chap purple">V — Spectroscopie infrarouge (IR)</div>
 
-    <div class="highlight-band">Le poids est une force <b>conservative</b> : son travail ne dépend que des altitudes de départ (z<sub>A</sub>) et d'arrivée (z<sub>B</sub>), <em>jamais du chemin suivi</em>.</div>
+<div class="sec">Principe</div>
+<p>Les liaisons moléculaires <b>vibrent</b> et absorbent des radiations IR à des fréquences caractéristiques. On trace le spectre <b>T = f(σ)</b> :</p>
+<div class="g2" style="margin-top:8px;">
+  <div class="card">
+    <div class="label">Transmittance T</div>
+    <div class="formula sm gray">T = I / I₀</div>
+    <p style="font-size:12px;">En %. <b>Plus une liaison absorbe, plus T est faible</b> (creux vers le bas).</p>
+  </div>
+  <div class="card">
+    <div class="label">Nombre d'onde σ</div>
+    <div class="formula sm gray">σ = 1 / λ &nbsp;(cm⁻¹)</div>
+    <p style="font-size:12px;">λ en cm. Axe horizontal, de 4000 à 500 cm⁻¹.</p>
+  </div>
+</div>
 
-    <div class="two-col">
-      <div class="callout tip">
-        <div class="callout-head">💡 Objet qui descend</div>
-        <div class="callout-body">z<sub>A</sub> &gt; z<sub>B</sub> &rarr; W(<span class="vec">P</span>) &gt; 0 (moteur)<br>Le poids aide la descente. L'E<sub>pp</sub> perdue devient E<sub>c</sub>.</div>
-      </div>
-      <div class="callout warn">
-        <div class="callout-head">⚠ Objet qui monte</div>
-        <div class="callout-body">z<sub>A</sub> &lt; z<sub>B</sub> &rarr; W(<span class="vec">P</span>) &lt; 0 (résistant)<br>Le poids s'oppose à la montée. Il faut fournir de l'énergie.</div>
-      </div>
-    </div>
+<div class="callout info">💡 Une bande est dite <b>forte</b> quand T est faible (creux profond), et <b>large</b> si elle s'étale sur un grand intervalle de σ.</div>
 
-    <div class="sub-title amber">Le travail du frottement <span class="vec">f</span> — une force dissipative</div>
+<div class="sec">Zones du spectre</div>
+<div class="g2">
+  <div class="card" style="background:var(--amber-light);border-color:var(--amber);">
+    <div class="label" style="color:var(--amber);">Zone 1 — Utile</div>
+    <p style="font-size:12px;">4000 → 1500 cm⁻¹<br>Bandes de O–H et C=O.</p>
+  </div>
+  <div class="card">
+    <div class="label">Zone 2 — Complexe</div>
+    <p style="font-size:12px;">1500 → 500 cm⁻¹<br>Squelette carboné (peu exploitable).</p>
+  </div>
+</div>
 
-    <div class="formula amber">W(<span class="vec">f</span>) = &minus;f &times; AB</div>
+<div class="sec">Tableau des bandes à retenir</div>
+<table class="tbl purple">
+  <tr><th>Liaison</th><th>σ (cm⁻¹)</th><th>Aspect</th></tr>
+  <tr><td><b>O–H</b> alcool</td><td>3 200 – 3 400</td><td>Forte et <b>large</b></td></tr>
+  <tr><td><b>O–H</b> acide carboxylique</td><td>2 600 – 3 200</td><td>Forte et <b>très large</b></td></tr>
+  <tr><td><b>C=O</b> (cétone / aldéhyde / acide)</td><td>1 700 – 1 760</td><td>Forte et <b>fine</b></td></tr>
+</table>
 
-    <p>Le frottement est une force <b>non conservative</b> : son travail dépend du chemin suivi. Puisque <span class="vec">f</span> est toujours opposé au déplacement (&alpha; = 180°, cos 180° = &minus;1), W(<span class="vec">f</span>) est <b>toujours négatif</b> : il dissipe de l'énergie (chaleur, son...).</p>
+<div class="sec">Comment lire un spectre IR</div>
+<div class="step"><div class="snum purple">1</div><div class="stxt">Chercher une bande forte et large vers <b>3 200–3 400 cm⁻¹</b> → O–H d'un <b>alcool</b>.</div></div>
+<div class="step"><div class="snum purple">2</div><div class="stxt">Chercher une bande forte et très large vers <b>2 600–3 200 cm⁻¹</b> → O–H d'un <b>acide carboxylique</b>.</div></div>
+<div class="step"><div class="snum purple">3</div><div class="stxt">Chercher une bande forte et fine vers <b>1 700–1 760 cm⁻¹</b> → C=O (cétone, aldéhyde, ou acide).</div></div>
+<div class="step"><div class="snum purple">4</div><div class="stxt"><b>Combiner</b> les informations pour identifier le groupe caractéristique.</div></div>
 
-    <div class="callout ex">
-      <div class="callout-head">📝 Exemple — Traîneau (du cours)</div>
-      <div class="callout-body">Force de frottement F<sub>4</sub> = 142 N sur 20 m :<br>W(<span class="vec">f</span>) = &minus;142 &times; 20 = <b>&minus;2 840 J = &minus;2,8 kJ</b> (résistant)</div>
-    </div>
+<div class="callout purple">🔑 Acide carboxylique = bande O–H très large (2600–3200) <b>ET</b> bande C=O fine (1700–1760) en même temps.</div>
 
-    <hr>
+<div class="sec">Identifier la famille à partir du spectre</div>
+<div class="ir-band oh-alcool">
+  <div class="dot"></div>
+  <div>
+    <b>O–H vers 3300 cm⁻¹</b>, large — <b>pas</b> de C=O vers 1700<br>
+    <small>→ Alcool (groupe hydroxyle)</small>
+  </div>
+</div>
+<div class="ir-band oh-acide">
+  <div class="dot"></div>
+  <div>
+    <b>O–H très large vers 2600–3200</b> <b>+</b> C=O fin vers 1700–1760<br>
+    <small>→ Acide carboxylique (groupe carboxyle)</small>
+  </div>
+</div>
+<div class="ir-band co">
+  <div class="dot"></div>
+  <div>
+    <b>C=O fin vers 1700–1760</b> — <b>pas</b> de O–H vers 3200–3400<br>
+    <small>→ Cétone ou aldéhyde (groupe carbonyle)</small>
+  </div>
+</div>
 
-    <!-- III. TEC -->
-    <div class="sec-title purple">III. Théorème de l'énergie cinétique (TEC)</div>
+<div class="callout info">📝 <b>Exemple phéromone (4-méthylheptan-3-one) :</b> Le spectre montre une bande O–H vers 3300 cm⁻¹ → la molécule est un alcool, <b>pas</b> la cétone attendue.</div>
 
-    <div class="callout def">
-      <div class="callout-head">📖 Énoncé</div>
-      <div class="callout-body">La <b>variation d'énergie cinétique</b> d'un système entre deux points A et B est égale à la <b>somme des travaux de TOUTES les forces</b> appliquées sur ce système.</div>
-    </div>
+<hr>
 
-    <div class="formula purple">&Delta;E<sub>c</sub> = E<sub>c,B</sub> &minus; E<sub>c,A</sub> = &Sigma; W(<span class="vec">f</span>)</div>
+<!-- ═══════ RÉCAP ═══════ -->
+<div class="chap">Récapitulatif complet</div>
 
-    <div class="sub-title">Méthode pas à pas</div>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text">Choisir le <b>système</b> et le <b>référentiel terrestre</b>.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text">Faire le <b>bilan des forces</b> : poids <span class="vec">P</span>, réaction <span class="vec">R</span>, frottements <span class="vec">f</span>...</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text">Identifier les <b>travaux nuls</b> : W(<span class="vec">R</span>) = 0 car <span class="vec">R</span> &perp; déplacement.</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-text">Écrire le TEC : &Delta;E<sub>c</sub> = W(<span class="vec">P</span>) + W(<span class="vec">R</span>) + W(<span class="vec">f</span>) + ...</div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-text">Remplacer chaque W par son expression et <b>isoler l'inconnue</b>.</div></div>
-    </div>
+<table class="tbl">
+  <tr><th>Famille</th><th>Groupe</th><th>Bande IR caractéristique</th></tr>
+  <tr><td>Alcane</td><td>aucun</td><td>Aucune bande O–H ni C=O</td></tr>
+  <tr><td>Alcool</td><td>–OH</td><td>O–H large 3200–3400 cm⁻¹</td></tr>
+  <tr><td>Aldéhyde</td><td>–CHO</td><td>C=O fin 1700–1760 cm⁻¹</td></tr>
+  <tr><td>Cétone</td><td>C=O</td><td>C=O fin 1700–1760 cm⁻¹</td></tr>
+  <tr><td>Acide carboxylique</td><td>–COOH</td><td>O–H très large 2600–3200 <b>+</b> C=O fin</td></tr>
+</table>
 
-    <div class="callout ex">
-      <div class="callout-head">📝 Exemple — Toboggan (du cours)</div>
-      <div class="callout-body">
-        Enfant (masse m) descend un toboggan de longueur L, incliné de &theta;, depuis l'arrêt (v<sub>A</sub> = 0).<br>
-        TEC : &frac12;mv<sub>B</sub>² &minus; 0 = W(<span class="vec">P</span>) + W(<span class="vec">R</span>) + W(<span class="vec">f</span>)<br>
-        &frac12;mv<sub>B</sub>² = mg(z<sub>A</sub>&minus;z<sub>B</sub>) + 0 &minus; f&times;L<br>
-        &frac12;mv<sub>B</sub>² = mg&times;L&times;sin&theta; &minus; f&times;L<br>
-        &rarr; <b>f = [mg&times;sin&theta; &minus; &frac12;mv<sub>B</sub>²&divide;L]</b>
-      </div>
-    </div>
+<div class="g2" style="margin-top:10px;">
+  <div class="card" style="background:var(--teal-light);border-color:var(--teal);">
+    <div class="label">Méthode nommage</div>
+    <ol style="padding-left:16px;font-size:12px;line-height:1.8;">
+      <li>Groupe caract. → suffixe</li>
+      <li>Chaîne max → radical</li>
+      <li>Numéroter (indice min)</li>
+      <li>Ramifications → préfixe</li>
+    </ol>
+  </div>
+  <div class="card" style="background:var(--purple-light);border-color:var(--purple);">
+    <div class="label" style="color:var(--purple);">Méthode spectre IR</div>
+    <ol style="padding-left:16px;font-size:12px;line-height:1.8;">
+      <li>Bande vers 3200–3400 ?</li>
+      <li>Très large → acide ?</li>
+      <li>Bande vers 1700–1760 ?</li>
+      <li>Combiner → famille</li>
+    </ol>
+  </div>
+</div>
 
-    <hr>
-
-    <!-- IV. TVEM -->
-    <div class="sec-title purple">IV. Théorème de la variation d'énergie mécanique (TVEM)</div>
-
-    <div class="callout def">
-      <div class="callout-head">📖 Énoncé</div>
-      <div class="callout-body">La <b>variation d'énergie mécanique</b> est égale à la somme des travaux des <b>forces non conservatives seulement</b>. Le poids, étant conservatif, est déjà pris en compte dans E<sub>pp</sub>.</div>
-    </div>
-
-    <div class="formula purple">&Delta;E<sub>m</sub> = E<sub>m,B</sub> &minus; E<sub>m,A</sub> = &Sigma; W(<span class="vec">f</span><sub>nc</sub>)</div>
-
-    <div class="two-col" style="margin-top:14px;">
-      <div class="card teal">
-        <div class="card-label">Conservation de E<sub>m</sub></div>
-        <p style="font-size:12.5px;">Sans frottements &rarr; &Sigma;W<sub>nc</sub> = 0 &rarr; &Delta;E<sub>m</sub> = 0</p>
-        <div class="formula sm" style="margin:8px 0;">E<sub>m,A</sub> = E<sub>m,B</sub></div>
-        <p style="font-size:12px;">soit : E<sub>c,A</sub> + E<sub>pp,A</sub> = E<sub>c,B</sub> + E<sub>pp,B</sub></p>
-        <p style="font-size:12px; color:var(--muted); margin-top:6px;">Ex : chute libre, montagnes russes, Tarzan</p>
-      </div>
-      <div class="card amber">
-        <div class="card-label">Non-conservation de E<sub>m</sub></div>
-        <p style="font-size:12.5px;">Avec frottements &rarr; &Delta;E<sub>m</sub> = W(<span class="vec">f</span>) &lt; 0</p>
-        <div class="formula amber sm" style="margin:8px 0;">E<sub>m,B</sub> &lt; E<sub>m,A</sub></div>
-        <p style="font-size:12px;">L'énergie mécanique diminue : une partie part en chaleur (frottements).</p>
-        <p style="font-size:12px; color:var(--muted); margin-top:6px;">Ex : cycliste avec frottements, bille dans un liquide</p>
-      </div>
-    </div>
-
-    <div class="callout ex" style="margin-top:12px;">
-      <div class="callout-head">📝 Exemple — Cycliste sur route horizontale (du cours)</div>
-      <div class="callout-body">
-        Lecture graphique : E<sub>m,E</sub> = 480 J, E<sub>m,F</sub> = 410 J, parcours EF = 10 m.<br>
-        TVEM : &Delta;E<sub>m</sub> = W(<span class="vec">R</span>) + W(<span class="vec">f</span>) = 0 + W(<span class="vec">f</span>)<br>
-        410 &minus; 480 = &minus;70 J = W(<span class="vec">f</span>) = &minus;f &times; 10<br>
-        &rarr; <b>f = 70 &divide; 10 = 7,0 N</b>
-      </div>
-    </div>
-
-    <div class="sub-title" style="margin-top:20px;">TEC ou TVEM : comment choisir ?</div>
-
-    <table>
-      <tr><th>Je cherche...</th><th>J'utilise...</th><th>Pourquoi</th></tr>
-      <tr>
-        <td>Une vitesse, une force, une distance</td>
-        <td><b>TEC</b> — &Delta;E<sub>c</sub> = &Sigma;W</td>
-        <td>Toutes les forces contribuent à E<sub>c</sub></td>
-      </tr>
-      <tr>
-        <td>Le travail des frottements ou &Delta;E<sub>m</sub></td>
-        <td><b>TVEM</b> — &Delta;E<sub>m</sub> = &Sigma;W<sub>nc</sub></td>
-        <td>On isole directement W(<span class="vec">f</span>)</td>
-      </tr>
-      <tr>
-        <td>Chute libre, sans frottements</td>
-        <td>Au choix</td>
-        <td>Les deux donnent v = &radic;(2&times;g&times;h)</td>
-      </tr>
-    </table>
-
-    <div class="key-fact" style="margin-top:20px;">
-      <span class="kf-icon">🔑</span>
-      <span>La conservation de l'énergie mécanique n'est vraie <b>que s'il n'y a pas de frottements</b> (ou si leurs travaux sont nuls). Dès qu'il y a frottements, E<sub>m</sub> diminue obligatoirement.</span>
-    </div>
-
-  </div><!-- /content C12 -->
-
-  <div class="footer">Bon courage ! &nbsp;✨&nbsp; Ce document est une reformulation engageante de ton cours C11 &amp; C12, avec tous les exemples de tes exercices corrigés.</div>
-
-</div><!-- /page -->
+</div><!-- /content -->
+<div class="footer">Bonne révision ! Cours C13 complet — Nomenclature &amp; Spectroscopie IR. ✨</div>
+</div>
 </body>
 </html>
